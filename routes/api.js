@@ -62,7 +62,7 @@ router.get("/key", (req, res) => {
 
 router.get("/", (req, res) => {
   res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
-  res.cookie('some_cross_domain_cookie', 'http://api.masagus.space', { domain: 'api.masagus.space', encode: String });
+  res.cookie('some_cross_domain_cookie', 'https://fxc7.herokuapp.com', { domain: 'fxc7.herokuapp.com', encode: String });
   res.sendfile(dir + "/public/index.html");
 });
 
