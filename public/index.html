@@ -13,13 +13,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- main Style -->
     <style>
-      body{font-family:"Poppins", sans-serif;background-color:#f8f9fb}a,a:hover,a:visited{text-decoration:none}.home-page{padding-top:1vh;text-align:center;display:block;margin:0 auto auto}.no-found{color:#313131;font-size:48px;font-weight:700;line-height:24px}.error-text{color:#313131;font-size:16px;font-weight:400;line-height:24px;width:50%;margin:30px auto}.uf-copyright{font-size:16px}.copyright{color:#444;font-weight:300;line-height:24px;bottom:0;text-align:center;display:block;width:100%;margin-top:60px;margin-bottom:50px}.error{color:#777;font-size:120px;font-weight:700;line-height:0}#astronaut-error{width:167px;height:272px}@media (max-width: 992px){.copyright{margin:30px auto 0;bottom:inherit;padding:0 15px 30px;position:relative;width:80%;display:block}.error-text{width:100%}.no-found{line-height:56px}}@media (max-width: 650px){.error{font-size:180px}}@media (max-width: 480px){.no-found{line-height:50px;font-size:46px}.error-text{margin:20px auto}.error{font-size:100px}}@media screen and (max-width: 375px){.home-page{padding-top:1vh}}
+      body{font-family:"Poppins", sans-serif;background-color: #1F0100}a,a:hover,a:visited{text-decoration:none}.home-page{padding-top:1vh;text-align:center;display:block;margin:0 auto auto}.no-found{color:#fff;font-size:48px;font-weight:700;line-height:24px}.marquee{color:#fff; font-weight:700;line-width:20px}.error-text{color:#fff;font-size:16px;font-weight:400;line-height:24px;width:50%;margin:30px auto}.uf-copyright{font-size:16px}.copyright{color:#fff;font-weight:300;line-height:24px;bottom:0;text-align:center;display:block;width:100%;margin-top:60px;margin-bottom:50px}.error{color:#777;font-size:120px;font-weight:700;line-height:0}#astronaut-error{width:167px;height:272px}@media (max-width: 992px){.copyright{margin:30px auto 0;bottom:inherit;padding:0 15px 30px;position:relative;width:80%;display:block}.error-text{width:100%}.no-found{line-height:56px}}@media (max-width: 650px){.error{font-size:180px}}@media (max-width: 480px){.no-found{line-height:50px;font-size:46px}.error-text{margin:20px auto}.error{font-size:100px}}@media screen and (max-width: 375px){.home-page{padding-top:1vh}}
     </style>
 </head>
 
-<body bgcolor="black">
+<body>
+	<script>
+		swal("Rest APIs FXC7","FarhanXCode7","info");
+		</script>
     <div class="home-page">
         <!-- Start container  -->
         <div class="container">
@@ -179,61 +183,61 @@
 </g>
 </g></svg>
                     <h1 class="no-found">Welcome</h1>
-                    <div class="list-group shadow mt-4">
+<div class="list-group shadow mt-4">
                     <a href="#" class="list-group-item list-group-item-action active text-center" aria-current="true">
                       Youtube
                       <span class="badge bg-info rounded-pill">1</span>
                     </a>
-                    <a href="/ytdl?url=https://www.youtube.com/watch?v=ecH_4GqjKYc" class="list-group-item list-group-item-action">Download Video Audio</a>
+                    <a href="/ytdl?apikey=Fxc7&url=https://www.youtube.com/watch?v=ecH_4GqjKYc" class="list-group-item list-group-item-action">Download Video Audio</a>
                     </div>
                     <div class="list-group shadow">
                     <a href="#" class="list-group-item list-group-item-action active text-center mt-3" aria-current="true">
                       Lainya
                       <span class="badge bg-info rounded-pill">1</span>
                     </a>
-                    <a href="/whois?q=masagus.space" class="list-group-item list-group-item-action">WHOIS Domain</a>
+                    <a href="/whois?apikey=Fxc7&q=masagus.space" class="list-group-item list-group-item-action">WHOIS Domain</a>
                     </div>
                     <div class="list-group shadow">
                     <a href="#" class="list-group-item list-group-item-action active text-center mt-3" aria-current="true">
                       Instagram
                       <span class="badge bg-info rounded-pill">2</span>
                     </a>
-                    <a href="/ig/stalk?q=instagram" class="list-group-item list-group-item-action">Stalking</a>
-                    <a href="/ig/download?url=https://www.instagram.com/p/CG4qI0aDoyP" class="list-group-item list-group-item-action">Download</a>
+                    <a href="/ig/stalk?apikey=Fxc7&username=only_fxc7" class="list-group-item list-group-item-action">Stalking</a>
+                    <a href="/ig/download?apikey=Fxc7&url=https://www.instagram.com/p/CG4qI0aDoyP" class="list-group-item list-group-item-action">Download</a>
                     </div>
                     <div class="list-group shadow">
                     <a href="#" class="list-group-item list-group-item-action active text-center mt-3" aria-current="true">
                       Rexdl
                       <span class="badge bg-info rounded-pill">2</span>
                     </a>
-                    <a href="/rexdl/search?q=pou" class="list-group-item list-group-item-action">Search APK</a>
-                    <a href="/rexdl/get?url=https://rexdlfile.com/index.php?id=pou-apk-download" class="list-group-item list-group-item-action">Download APK</a>
+                    <a href="/rexdl/search?apikey=Fxc7&q=pou" class="list-group-item list-group-item-action">Search APK</a>
+                    <a href="/rexdl/get?apikey=Fxc7&url=https://rexdlfile.com/index.php?id=pou-apk-download" class="list-group-item list-group-item-action">Download APK</a>
                     </div>
                     <div class="list-group shadow">
                         <a href="#" class="list-group-item list-group-item-action active text-center mt-3" aria-current="true">
                             Primbon
                             <span class="badge bg-info rounded-pill">4</span>
                         </a>
-                        <a href="/primbon/artimimpi?q=mati" class="list-group-item list-group-item-action">Arti Mimpi</a>
-                        <a href="/primbon/artinama?q=jamal" class="list-group-item list-group-item-action">Arti Nama</a>
-                        <a href="/primbon/jodoh?nama1=jamal&nama2=kemal" class="list-group-item list-group-item-action">Ramal Jodoh</a>
-                        <a href="/primbon/nomor-hoki?nomor=08811223344" class="list-group-item list-group-item-action">Nomor Hoki</a>
+                        <a href="/primbon/artimimpi?apikey=Fxc7&q=mati" class="list-group-item list-group-item-action">Arti Mimpi</a>
+                        <a href="/primbon/artinama?apikey=Fxc7&q=jamal" class="list-group-item list-group-item-action">Arti Nama</a>
+                        <a href="/primbon/jodoh?apikey=Fxc7&text1=iriene&text2=Farhan" class="list-group-item list-group-item-action">Ramal Jodoh</a>
+                        <a href="/primbon/nomor-hoki?apikey=Fxc7&q=08311800241" class="list-group-item list-group-item-action">Nomor Hoki</a>
                     </div>
                     <div class="list-group shadow">
                     <a href="#" class="list-group-item list-group-item-action active text-center mt-3" aria-current="true">
                       Photooxy
                       <span class="badge bg-info rounded-pill">10</span>
                     </a>
-                    <a href="/photooxy/shadow?text1=Contoh" class="list-group-item list-group-item-action">Shadow text effect in the sky</a>
-                    <a href="/photooxy/romantic?text1=Contoh" class="list-group-item list-group-item-action">Romantic Messages for Your Loved One</a>
-                    <a href="/photooxy/smoke?text1=Contoh" class="list-group-item list-group-item-action">Smoke text effect</a>
-                    <a href="/photooxy/burn-papper?text1=Contoh" class="list-group-item list-group-item-action">Write text on burn paper</a>
-                    <a href="/photooxy/naruto?text1=Contoh" class="list-group-item list-group-item-action">Make Naruto banner</a>
-                    <a href="/photooxy/love-message?text1=Contoh" class="list-group-item list-group-item-action">Create a picture of love message</a>
-                    <a href="/photooxy/message-under-grass?text1=Contoh" class="list-group-item list-group-item-action">Write your message under the grass</a>
-                    <a href="/photooxy/tiktok?text1=Contoh&text2=Contoh" class="list-group-item list-group-item-action">Make tik tok text effect</a>
-                    <a href="/photooxy/double-heart?text1=Contoh" class="list-group-item list-group-item-action">Text effect on romantic double hearts</a>
-                    <a href="/photooxy/coffe-cup?text1=Contoh" class="list-group-item list-group-item-action">Put any text in to Coffee cup</a>
+                    <a href="/photooxy/shadow?apikey=Fxc7&text=Farhan" class="list-group-item list-group-item-action">Shadow text effect in the sky</a>
+                    <a href="/photooxy/romantic?apikey=Fxc7&text=Farhan" class="list-group-item list-group-item-action">Romantic Messages for Your Loved One</a>
+                    <a href="/photooxy/smoke?apikey=Fxc7&text=Farhan" class="list-group-item list-group-item-action">Smoke text effect</a>
+                    <a href="/photooxy/burn-papper?apikey=Fxc7&text=Farhan" class="list-group-item list-group-item-action">Write text on burn paper</a>
+                    <a href="/photooxy/naruto?apikey=Fxc7&text=Farhan" class="list-group-item list-group-item-action">Make Naruto banner</a>
+                    <a href="/photooxy/love-message?apikey=Fxc7&text=Farhan" class="list-group-item list-group-item-action">Create a picture of love message</a>
+                    <a href="/photooxy/message-under-grass?apikey=Fxc7&text=Farhan" class="list-group-item list-group-item-action">Write your message under the grass</a>
+                    <a href="/photooxy/glitch?apikey=Fxc7&text1=Rest Api&text2=FarhanXCode7" class="list-group-item list-group-item-action">Make Glitch text effect</a>
+                    <a href="/photooxy/double-heart?apikey=Fxc7&text=Farhan" class="list-group-item list-group-item-action">Text effect on romantic double hearts</a>
+                    <a href="/photooxy/coffe-cup?apikey=Fxc7&text=Farhan" class="list-group-item list-group-item-action">Put any text in to Coffee cup</a>
                     </div>
                   </div>
                 </div>
@@ -243,9 +247,11 @@
         <!-- End container -->
         <!-- Start copyright -->
         <div class="container footer">
-            <div class="row">
+        	<div class="row text-center mb-5"><hr>
+        	<h1 class="marquee">Thanks To</h1>
+        <h6 class="marquee"><marquee width="70%">Mbah Bagos - Manorius - wawan - rakha - Style Cogan - Kevin David - Acil</marquee></h6>
+        <h1 style="font-weight:700;color:#fff;">Bacotan Mastah</h1>
               <p class="copyright fw-bold">Build with &#x2764; by <a href="https://www.instagram.com/only_fxc7">Farhan</a><br/>
-              Copyright &copy; 2021 <a href="https://masagus.space">MasAgus</a></p>
             </div>
         </div>
         <!-- End copyright -->
