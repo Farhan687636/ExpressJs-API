@@ -9,9 +9,11 @@ const tema = {
   naruto: "https://photooxy.com/manga-and-anime/make-naruto-banner-online-free-378.html",
   loveMsg: "https://photooxy.com/logo-and-text-effects/create-a-picture-of-love-message-377.html",
   msgGrass: "https://photooxy.com/logo-and-text-effects/make-quotes-under-grass-376.html",
-  tikTok: "https://photooxy.com/logo-and-text-effects/make-tik-tok-text-effect-375.html",
+  Glitch: "https://photooxy.com/logo-and-text-effects/make-tik-tok-text-effect-375.html",
   doubleHeart: "https://photooxy.com/logo-and-text-effects/love-text-effect-372.html",
-  coffeCup: "https://photooxy.com/logo-and-text-effects/put-any-text-in-to-coffee-cup-371.html"
+  coffeCup: "https://photooxy.com/logo-and-text-effects/put-any-text-in-to-coffee-cup-371.html",
+  loveText: "https://photooxy.com/logo-and-text-effects/love-text-effect-372.html",
+  butterFly: "https://photooxy.com/logo-and-text-effects/butterfly-text-with-reflection-effect-183.html"
 }
 
 async function pShadow(text1) {
@@ -140,10 +142,10 @@ async function pMsgGrass(text1) {
   })
 }
 
-async function pTikTok(text1, text2) {
+async function pGlitch(text1, text2) {
   return new Promise((resolve, reject) => {
     const options = { method: 'POST',
-      url: tema.tikTok,
+      url: tema.Glitch,
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
       formData: { text_1: text1, text_2: text2, login: 'OK' } };
     
@@ -193,6 +195,40 @@ async function pCoffeCup(text1) {
     });
   })
 }
+async function pLoveText(text1) {
+  return new Promise((resolve, reject) => {
+    const options = { method: 'POST',
+      url: tema.loveText,
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      formData: { text_1: text1, login: 'OK' } };
+    
+    request(options, async function (error, response, body) {
+      if (error) throw new Error(error);
+      const $ = cheerio.load(body)
+      const result = {
+           url: $('div.btn-group > a').attr('href')
+      }
+      resolve(result);
+    });
+  })
+}
+async function pButterfly(text1) {
+  return new Promise((resolve, reject) => {
+    const options = { method: 'POST', 
+      url: tema.butterFly,
+      headers: { 'content-type': 'application/x-www-from-urlencoded' },
+      formData: { text_1: text1, login: 'OK' } };
+      
+    request(options, async function (error, response, body) {
+    if (error) throw new Error(error);
+    const $ = cheerio.load(body)
+    const result = {
+         url: $('div.btn-group > a').attr('href')
+    }
+    resolve(result);
+    });
+  })
+}
 
 module.exports = {
   pShadow,
@@ -202,7 +238,9 @@ module.exports = {
   pNaruto,
   pLoveMsg,
   pMsgGrass,
-  pTikTok,
+  pGlitch,
   pDoubleHeart,
-  pCoffeCup
+  pCoffeCup,
+  pLoveText,
+  pButterfly
 };
