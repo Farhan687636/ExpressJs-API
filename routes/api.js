@@ -1,25 +1,32 @@
+const favicon = require("serve-favicon");
 const express = require("express");
-const fs = require('fs');
 const router = express.Router();
+const request = require("request");
+const fetch = require("node-fetch");
 const dir = process.cwd();
 
 const {
-  whois
+  whois,
+  IpLookup
 } = require(dir + "/function/lainya");
+
 const {
   igStalk,
   igDownload
 } = require(dir + "/function/ig");
+
 const {
   getApk,
   searchApk
 } = require(dir + "/function/rexdl");
+
 const {
   artiNama,
   artiMimpi,
   ramalJodoh,
   nomorHoki
 } = require(dir + "/function/primbon");
+
 const {
   pShadow,
   pRomantic,
@@ -28,12 +35,17 @@ const {
   pNaruto,
   pLoveMsg,
   pMsgGrass,
-  pTikTok,
+  pGlitch,
   pDoubleHeart,
-  pCoffeCup
+  pCoffeCup,
+  pLoveText,
+  pButterfly
 } = require(dir + "/function/photooxy");
+
 const {
-  ytdl
+  yDonlod,
+  yPlay,
+  ySearch
 } = require(dir + "/function/yt");
 
 const loghandler = {
@@ -76,10 +88,18 @@ const loghandler = {
 			status: false,
 			code: 406,
 			message: 'masukkan parameter username'
+			},
+		error: {
+			status: false,
+			code: 406,
+			message: 'yahh emror gan:('
 			}
 	}
 		
 const listkey = ["Fxc7"];
+
+// add apikey
+
 router.post("/apikey", (req, res) => {
   const key = req.query.key;
   if(listkey.includes(key)) {
@@ -93,6 +113,8 @@ router.post("/apikey", (req, res) => {
     });
   }
 });
+
+// delete apikey
 
 router.delete("/apikey", (req, res) => {
 	const key = req.query.delete;
@@ -108,6 +130,26 @@ router.delete("/apikey", (req, res) => {
  }
 });
 
+router.use(favicon(dir + "/public/favicon.ico"));
+
+/**
+ * INDEX (HOME PAGE)
+ */
+
+router.get("/", (req, res, next) => {
+    res.cookie("rememberme", "1", { 
+        expires: new Date(Date.now() + 900000), 
+        httpOnly: true 
+        });
+    res.cookie("some_cross_domain_cookie", "https://fxc7-api.herokuapp.com", { 
+        domain: "fxc7-api.herokuapp.com", 
+        encode: String 
+        });
+    res.sendFile(dir + "/public/index.html");
+});
+
+// get checked apikey
+
 router.get("/apikey", (req, res) => {
   const key = req.query.key;
   if(listkey.includes(key)) {
@@ -117,11 +159,7 @@ router.get("/apikey", (req, res) => {
   }
 });
 
-router.get("/", (req, res) => {
-  res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: false });
-  res.cookie('some_cross_domain_cookie', 'https://api-fxc7.herokuapp.com', { domain: 'api-fxc7.herokuapp.com', encode: String });
-  res.sendFile(dir + "/public/index.html");
-});
+// primbon features
 
 router.get("/primbon/artinama", (req, res) => {
 	const apikey = req.query.apikey;
@@ -196,6 +234,9 @@ router.get("/primbon/nomor-hoki", (req, res) => {
     	res.send(loghandler.apikeyInvalid)
     }
 });
+// ======================
+
+// Instagram features
 
 router.get("/ig/stalk", (req, res) => {
   const username = req.query.username;
@@ -232,6 +273,9 @@ router.get("/ig/download", (req, res) => {
     	res.send(loghandler.apikeyInvalid)
     }
 });
+// =========================
+
+// others Features
 
 router.get("/whois", (req, res) => {
   const domain = req.query.q;
@@ -251,6 +295,50 @@ router.get("/whois", (req, res) => {
     }
 });
 
+router.get('/iplookup', (req, res) => {
+    const apikey = req.query.apikey;
+    const query = req.query.q;
+    
+    if(!query) return res.send(loghandler.query)
+    if(!apikey) return res.send(loghandler.notparam)
+    if(listkey.includes(apikey)){
+        IpLookup(query)
+            .then(data => {
+                res.send(data)
+            })
+            .catch(err => {
+                res.send(err)
+            })
+            } else {
+            	res.send(loghandler.apikeyInvalid)
+            }
+})
+
+router.get('/tinyurl', (req, res) => {
+    const url = req.query.url;
+    const apikey = req.query.apikey;
+
+	if(!apikey) return res.send(loghandler.notparam)
+	if(!url) return res.send(loghandler.url)
+	if(listkey.includes(apikey)) {
+     request(`https://tinyurl.com/api-create.php?url=${url}`, function (error, response, body) {
+         try {
+             res.send({
+                 status : true,
+                 code: 200,
+                 result : `${body}`
+             })
+         } catch {
+             res.send(loghandler.notparam)
+         }
+     })
+     } else {
+     	res.send(loghandler.apikeyInvalid)
+     }
+})
+// ==================
+
+// rexdl get apk
 router.get("/rexdl/search", (req, res) => {
   const apkname = req.query.q;
   const apikey = req.query.apikey;
@@ -290,6 +378,9 @@ router.get("/rexdl/get", (req, res) => {
     	res.send(loghandler.apikeyInvalid)
     }
 });
+// ==========================
+
+// photo maker photooxy
 
 router.get("/photooxy/shadow", (req, res) => {
   const text1 = req.query.text;
@@ -453,7 +544,7 @@ router.get("/photooxy/glitch", (req, res) => {
   if(!text2) return res.send(loghandler.text2)
   if(!apikey) return res.send(loghandler.notparam)
   if(listkey.includes(apikey)){
-  pTikTok(text1, text2)
+  pGlitch(text1, text2)
     .then((data) => {
       res.send({
 status: true,
@@ -512,14 +603,59 @@ result: data
     	res.send(loghandler.apikeyInvalid)
     }
 });
+router.get("/photooxy/love-text", (req, res) => {
+  const text1 = req.query.text;
+  const apikey = req.query.apikey;
+  if(!text1) return res.send(loghandler.text1)
+  if(!apikey) return res.send(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  pLoveText(text1)
+    .then((data) => {
+      res.send({
+status: true,
+code: 200,
+result: data
+})
+    })
+    .catch((error) => {
+      res.send(error)
+    });
+    } else {
+    	res.send(loghandler.apikeyInvalid)
+    }
+});
+router.get("/photooxy/butterfly", (req, res) => {
+  const text1 = req.query.text;
+  const apikey = req.query.apikey;
+  if(!text1) return res.send(loghandler.text1)
+  if(!apikey) return res.send(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  pButterfly(text1)
+    .then((data) => {
+      res.send({
+status: true,
+code: 200,
+result: data
+})
+    })
+    .catch((error) => {
+      res.send(error)
+    });
+    } else {
+    	res.send(loghandler.apikeyInvalid)
+    }
+});
+// ==========================
 
-router.get('/ytdl', (req, res) => {
+// Youtube Download
+
+router.get('/yt/download', (req, res) => {
   const url = req.query.url;
   const apikey = req.query.apikey;
   if(!url) return res.send(loghandler.url)
   if(!apikey) return res.send(loghandler.notparam)
   if(listkey.includes(apikey)){
-  ytdl(url)
+  yDonlod(url)
     .then((data) => {
       res.send(data)
     })
@@ -530,6 +666,46 @@ router.get('/ytdl', (req, res) => {
     	res.send(loghandler.apikeyInvalid)
     }
 });
+router.get("/yt/play", (req, res) => {
+    const query = req.query.q;
+    const apikey = req.query.apikey;
+    
+    if(!query) return res.send(loghandler.query)
+    if(!apikey) return res.send(loghandler.notparam)
+    if(listkey.includes(apikey)){
+    yPlay(query)
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((error) => {
+            res.send(error);
+        });
+      } else {
+      res.send(loghandler.apikeyInvalid)
+      }
+});
+
+router.get("/yt/search", (req, res) => {
+    const query = req.query.q;
+    const apikey = req.query.apikey;
+    
+    if(!query) return res.send(loghandler.query)
+    if(!apikey) return res.send(loghandler.notparam)
+    if(listkey.includes(apikey)){
+    ySearch(query)
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((error) => {
+            res.send(error);
+        });
+      } else {
+     res.send(loghandler.apikeyInvalid)
+     }
+});
+// =====================
+
+// router use if error
 
 router.use(function (req, res, next) {
   res
